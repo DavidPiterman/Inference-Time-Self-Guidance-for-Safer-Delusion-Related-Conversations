@@ -52,4 +52,4 @@ Stage-2 activation summaries use `intervened` and `stage2_decision` in TURNS. Th
 
 The blinded clinical matrix is supplied for separate inspection, not loaded by the benchmark notebook. It contains no condition mapping. Keep researcher-only mappings and private clinical materials outside this release.
 
-The supplied study data are preserved. New runner outputs go to `outputs/raw_runs/`, and newly calculated benchmark results go to `outputs/analysis/`. Those generated outputs are not required input files.
+The supplied study data are preserved. Benchmark results are displayed inside the notebook. Optional live runners save new conversations under `outputs/raw_runs/`; those records are separate from the two analysis inputs.

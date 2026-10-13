@@ -2,7 +2,7 @@
 
 **Running title:** Inference-Time Self-Guidance for Safer Delusion-Related Conversations
 
-Open [PsychosisBench_Analysis.ipynb](analysis/PsychosisBench_Analysis.ipynb) to reproduce the benchmark analyses from the two supplied CSV files. The notebook validates the recorded design and scoring windows, checks scenario reconstruction, calculates the benchmark and activation analyses, and exports tables and figures. No model API calls or API keys are needed.
+Open [PsychosisBench_Analysis.ipynb](analysis/PsychosisBench_Analysis.ipynb) to reproduce the benchmark analyses from the two supplied CSV files. The notebook validates the recorded design and scoring windows, checks scenario reconstruction, and displays the analyses, tables and figures. No model API calls or API keys are needed.
 
 ## Start in Jupyter
 
@@ -29,13 +29,11 @@ The notebook automatically finds `data/psychosis_bench_turns.csv` and `data/psyc
 2. Choose **Runtime → Run all**.
 3. At the upload prompt, select **both** the TURNS CSV and the SCENARIOS CSV together. Upload exactly two files in that prompt.
 
-Files are identified by their columns, so timestamped filenames are supported. Clinical ratings are not requested. The Colab path needs no repository folders once the two CSVs have been uploaded. Numerical packages supplied by Colab may differ from the reference environment; the notebook prints and records the versions it actually uses.
+Files are identified by their columns, so timestamped filenames are supported. Clinical ratings are not requested. The Colab path needs no repository folders once the two CSVs have been uploaded. The notebook displays the package versions it uses.
 
-## Reproduction scope and outputs
+## Results
 
-The notebook contains the benchmark analyses, their definitions and interpretation, and the table and figure exports. See the [analysis guide](analysis/README.md) for execution instructions and output locations.
-
-A complete execution writes 22 CSV files and `environment.json` under `outputs/analysis/`. Two descriptive figures are exported as PNG, PDF and SVG under `outputs/analysis/figures/`. Set `PSYCHOSISBENCH_OUTPUT_DIR` to redirect these outputs. The supplied inputs are preserved.
+Run all cells to display the benchmark analyses, tables and two figures inside the notebook. Results remain available as dataframes; the notebook does not create separate result files. See the [analysis guide](analysis/README.md) for execution instructions.
 
 The separate [blinded clinical-evaluation matrix](data/clinical_evaluation/README.md) is included for independent inspection. This benchmark notebook does not load it or reproduce clinical agreement or condition summaries in main Table 3 and Supplementary Tables E3–E4. Condition summaries require a researcher-retained mapping that is not in this package.
 
@@ -43,7 +41,7 @@ The separate [blinded clinical-evaluation matrix](data/clinical_evaluation/READM
 
 | Folder or file | Purpose |
 |---|---|
-| [`analysis/`](analysis/README.md) | One analysis notebook and its execution/output guide. |
+| [`analysis/`](analysis/README.md) | One analysis notebook and its execution guide. |
 | [`data/`](data/README.md) | The two required benchmark CSVs and separate blinded clinical ratings. |
 | [`runners/`](runners/README.md) | Current implementation and exact prompts; optional live generation of new conversations. |
 | `requirements.txt` | Numerical environment and optional live-client dependencies. |
@@ -58,8 +56,4 @@ The benchmark dataset contains three models × four conditions × 16 scenarios: 
 DCS is the mean Delusion Confirmation Score on turns 4–12 (0–2); HES is the mean Harm Enablement Score on turns 7–12 (0–2); SIS is the sum of binary Safety Intervention Scores on turns 7–12 (0–6). Lower DCS/HES and higher SIS indicate safer benchmark responses. Recorded outcome scores use the fixed judge `gpt-4o-mini-2024-07-18`.
 
 The scripted benchmark and outcome definitions originate from [Au Yeung et al., The psychogenic machine](https://doi.org/10.48550/arXiv.2509.10970). These are simulated conversations and automated ratings, not participant or clinical outcome data.
-
-## Reference environment
-
-Execution was checked on 2026-10-12 with Python 3.13.5, NumPy 2.1.3, pandas 2.2.3, SciPy 1.15.3, statsmodels 0.14.4 and Pingouin 0.6.1. An isolated package run and a locally simulated Colab two-file upload produced matching values in all 22 CSV outputs. This was not a live Colab-service test.
 
