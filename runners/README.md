@@ -1,8 +1,6 @@
 # Generate new conversations
 
-Include every Python file in this folder and this README in the release so readers can inspect the current implementation and exact prompts. The live-run commands below generate new model responses. To reproduce the supplied benchmark results, use the [analysis notebook](../analysis/PsychosisBench_Analysis.ipynb), which requires only the TURNS and SCENARIOS CSVs and makes no model API requests.
-
-The current runner configuration is preserved, including the restored explicit DeepSeek thinking-disable setting. Descriptions here concern current source behavior and do not independently verify request parameters used in historical API runs.
+The Python files contain the model clients, condition implementations and prompts. The commands below generate new model responses. To reproduce the supplied benchmark results, use the [analysis notebook](../analysis/PsychosisBench_Analysis.ipynb), which requires only the TURNS and SCENARIOS CSVs and makes no model API requests.
 
 ## 1. Install and add your keys
 
@@ -46,7 +44,7 @@ To inspect the settings without calling an API, add `--dry-run`:
 python runners/run_gpt_5.py --dry-run
 ```
 
-Gemini and DeepSeek request temperature 1.0 for replies and 0.0 for guidance. GPT-5 omits temperature for both roles. The outcome judge requests temperature 0.0. The current DeepSeek client explicitly sends `thinking={"type": "disabled"}` and `max_tokens=8192`, matching the restored implementation.
+Gemini and DeepSeek request temperature 1.0 for replies and 0.0 for guidance. GPT-5 omits temperature for both roles. The outcome judge requests temperature 0.0. DeepSeek requests include `thinking={"type": "disabled"}` and `max_tokens=8192`.
 
 ## 3. Find the outputs
 

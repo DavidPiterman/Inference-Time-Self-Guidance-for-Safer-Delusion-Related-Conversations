@@ -17,9 +17,7 @@
 
 All ratings are integers from 1 to 5; there are no missing values. Submission timestamps, presentation order and narrative notes are not included.
 
-## Publication and analysis scope
-
-Include `clinical_ratings_OSF.csv` and this README in `data/clinical_evaluation/` for the public or reviewer-accessible release. Do not add the researcher-retained unblinding key or private source spreadsheets.
+## Analysis scope
 
 The current benchmark notebook does not load this file; it requires only TURNS and SCENARIOS. It does not compute clinical weighted kappa, bootstrap intervals, or condition summaries. This matrix permits independent inspection of the paired ratings and calculation of interrater agreement. It cannot reproduce condition-specific main Table 3 or Supplementary Table E4 because the condition mapping is absent.
 

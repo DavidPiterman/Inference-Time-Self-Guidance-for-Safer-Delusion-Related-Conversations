@@ -31,7 +31,7 @@ Files are identified by their columns, so timestamped filenames are supported. C
 
 ## Reproduction scope and outputs
 
-The current notebook covers RQ1, direct treatment comparisons, RQ2, exploratory RQ3a, within-condition SIS contrasts, rank-based robustness checks, treatment exposure, and post-registration descriptive Stage-2 activation by cue type. See the [analysis guide](analysis/README.md) for units, correction families and output mapping.
+The notebook contains the benchmark analyses, their definitions and interpretation, and the table and figure exports. See the [analysis guide](analysis/README.md) for execution instructions and output locations.
 
 A complete execution writes 22 CSV files and `environment.json` under `outputs/analysis/`. Two descriptive figures are exported as PNG, PDF and SVG under `outputs/analysis/figures/`. Set `PSYCHOSISBENCH_OUTPUT_DIR` to redirect these outputs. The supplied inputs are preserved.
 
@@ -45,7 +45,6 @@ The separate [blinded clinical-evaluation matrix](data/clinical_evaluation/READM
 | [`data/`](data/README.md) | The two required benchmark CSVs and separate blinded clinical ratings. |
 | [`runners/`](runners/README.md) | Current implementation and exact prompts; optional live generation of new conversations. |
 | `requirements.txt` | Numerical environment and optional live-client dependencies. |
-| `ADDITIONAL_EXPLORATORY_ANALYSES.md` | Register of analyses added after registration; see the release note below. |
 | `.env.example`, `.gitignore` | Empty live-run credential template and exclusions for local files. |
 
 The live runners are not part of the reproduction workflow. New model responses require provider credentials and a separately supplied scenario JSON file configured through `TEST_CASES_PATH`; `data/test_cases.json` is not included. New responses may differ from the recorded study data.
@@ -54,16 +53,11 @@ The live runners are not part of the reproduction workflow. New model responses 
 
 The benchmark dataset contains three models × four conditions × 16 scenarios: 192 simulated conversations and 2,304 assistant turns. The evaluated model labels are Gemini 2.5 Pro, GPT-5 and DeepSeek V4 Flash.
 
-RQ1 preserves 16 scenario profiles. RQ2 and exploratory RQ3a use eight matched Explicit–Implicit pairs. Stage-2 activation is descriptive, added after registration, and uses the logged `intervened` indicator; Stage-1 severity is unavailable in the exported data and is not analyzed or imputed.
-
 DCS is the mean Delusion Confirmation Score on turns 4–12 (0–2); HES is the mean Harm Enablement Score on turns 7–12 (0–2); SIS is the sum of binary Safety Intervention Scores on turns 7–12 (0–6). Lower DCS/HES and higher SIS indicate safer benchmark responses. Recorded outcome scores use the fixed judge `gpt-4o-mini-2024-07-18`.
 
 The scripted benchmark and outcome definitions originate from [Au Yeung et al., The psychogenic machine](https://doi.org/10.48550/arXiv.2509.10970). These are simulated conversations and automated ratings, not participant or clinical outcome data.
 
-## Release contents and verification
-
-Publish this complete package with its hierarchy intact. For GitHub, place its contents at the repository root. For OSF, provide the same current files with clear access to the notebook, data and installation instructions. Keep one current analysis notebook. Exclude real `.env` files, credentials, private clinical mappings, generated outputs, caches and workspace records; retain only the empty `.env.example`. Manual file uploads do not automatically honor `.gitignore`.
+## Reference environment
 
 Execution was checked on 2026-10-12 with Python 3.13.5, NumPy 2.1.3, pandas 2.2.3, SciPy 1.15.3, statsmodels 0.14.4 and Pingouin 0.6.1. An isolated package run and a locally simulated Colab two-file upload produced matching values in all 22 CSV outputs. This was not a live Colab-service test.
 
-Before release, update `ADDITIONAL_EXPLORATORY_ANALYSES.md` to include the Stage-2 activation analysis and the registration reference used in the manuscript. After publishing, check the actual reviewer download and run the notebook again from that download.

@@ -1,6 +1,6 @@
-# Study data and upload contents
+# Study data
 
-Publish the benchmark CSVs and README files, preserving the `clinical_evaluation/` subfolder and its blinded ratings matrix. The benchmark notebook requires exactly the TURNS and SCENARIOS CSVs. Local history and cache files are excluded. A scenario JSON file for new live runs is not included.
+The benchmark notebook requires exactly the TURNS and SCENARIOS CSVs. The blinded ratings matrix is supplied separately in `clinical_evaluation/`. A scenario JSON file for new live runs is not included.
 
 | File or folder | Role |
 |---|---|

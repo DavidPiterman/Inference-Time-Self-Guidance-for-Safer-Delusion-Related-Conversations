@@ -57,18 +57,7 @@ To redirect outputs, set `PSYCHOSISBENCH_OUTPUT_DIR` before running the notebook
 
 Figure 1 shows condition means by model. Figure 2 shows model-averaged signed cue gaps. They are descriptive summaries; the corresponding tests are in the CSV files.
 
-## Analyses added after registration
-
-Section 1.7 descriptively compares Stage-2 activation by Explicit/Implicit cue in Treatments A–C, across turns 1–12 and separately turns 7–12. Activation is `intervened == 1`; it includes creation, reuse or refinement. Comparisons use the eight matched pairs with equal averaging across models; differences are Explicit minus Implicit in percentage points. No inferential tests are performed. This uses TURNS only after its reconstruction has been validated against SCENARIOS. Stage-1 severity was not exported and is not analyzed or imputed. The four `cue_activation_*.csv` outputs support Supplementary Table B2.
-
-Section 2.8 of the notebook tests the Explicit-versus-Implicit Safety Intervention Score contrast separately within Baseline and within each treatment. It was added after the registration, it is labelled as such in the notebook, and it does not replace the registered exploratory RQ3a gap-reduction analysis in Section 2.6. Only SIS is tested, because it is the only outcome with a significant Baseline cue-type disparity, so no new DCS or HES post hoc family is created. See `../ADDITIONAL_EXPLORATORY_ANALYSES.md` for the within-condition analysis boundary. Before release, that register also needs the Section 1.7 activation analysis and the current manuscript registration reference.
-
 ## Package versions for the reported tables
 
 The reported tables were produced with Python 3.13.5, NumPy 2.1.3, pandas 2.2.3, SciPy 1.15.3, statsmodels 0.14.4 and Pingouin 0.6.1. The notebook prints the versions of the environment it runs in and writes them to `environment.json`. Rank-based p values can differ between SciPy releases, so compare that file against these versions before treating a rerun as a reproduction.
 
-## Publishing and reader checks
-
-Include this notebook and README, both CSV inputs in `../data/`, and the package-root README and `requirements.txt` in the reader download. Publish the complete package to retain implementation and data documentation. Do not distribute this folder as a standalone claim to reproduce clinical tables.
-
-On 2026-10-12 the current notebook passed isolated package execution and a locally simulated Colab two-file upload using the reference numerical environment. All 22 CSV outputs matched between the two routes. The older flat OSF download is not this checked release; update the reviewer-facing files before closing that reproduction issue.
