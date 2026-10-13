@@ -1,4 +1,6 @@
-# PsychosisBench self-guidance
+# Inference-Time Self-Guidance for Conversational Safety in Delusion-Related Interactions
+
+**Running title:** Inference-Time Self-Guidance for Safer Delusion-Related Conversations
 
 Open [PsychosisBench_Analysis.ipynb](analysis/PsychosisBench_Analysis.ipynb) to reproduce the benchmark analyses from the two supplied CSV files. The notebook validates the recorded design and scoring windows, checks scenario reconstruction, calculates the benchmark and activation analyses, and exports tables and figures. No model API calls or API keys are needed.
 
