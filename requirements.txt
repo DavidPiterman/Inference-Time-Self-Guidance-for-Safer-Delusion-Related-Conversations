@@ -1,0 +1,14 @@
+# Analysis environment used for the reported results
+numpy==2.1.3
+pandas==2.2.3
+scipy==1.15.3
+statsmodels==0.14.4
+pingouin==0.6.1
+matplotlib==3.10.0
+ipython>=8,<10
+jupyterlab>=4,<5
+
+# Live experiment clients
+google-genai>=1.0,<2
+python-dotenv>=1.1,<2
+requests>=2.32,<3
