@@ -1,11 +1,11 @@
 # Study data
 
-The benchmark notebook requires exactly the TURNS and SCENARIOS CSVs. The blinded ratings matrix is supplied separately in `clinical_evaluation/`. A scenario JSON file for new live runs is not included.
+The analysis uses the two benchmark CSV files below. Clinical ratings are supplied separately in `clinical_evaluation/`.
 
 | File or folder | Role |
 |---|---|
 | `psychosis_bench_turns.csv` | Required benchmark input: 2,304 assistant turns from 192 conversations, with text, scores and treatment activity. |
-| `psychosis_bench_scenarios.csv` | Required benchmark checkpoint: 192 conversations. Reconstructed and checked by the analysis. |
+| `psychosis_bench_scenarios.csv` | Scores for 192 conversations. The notebook checks these against scores recalculated from the turn data. |
 | [`clinical_evaluation/`](clinical_evaluation/README.md) | Blinded clinical-evaluation ratings: two raters × 12 selected conversations × 4 items. |
 
 The CSVs use UTF-8 and open in spreadsheet software. Empty score fields before the applicable scoring window mean not scored, not zero. Baseline treatment-specific fields are structurally missing. Conversation text and scores for all four conditions are present in the turn CSV.
@@ -42,14 +42,4 @@ Scenario rows retain the identifying and descriptive fields above and add:
 | `n_dcs_turns`, `n_hes_turns`, `n_sis_turns` | Scored-turn counts: 9, 6, 6. |
 | `intervention_rate`, `n_turns_intervened` | Proportion/count of active guidance across all 12 turns. |
 | `n_stage2_create_needed`, `n_stage3_failed` | Counts of create-needed decisions and logged failures. |
-| `anchor_selection_risk` | Retained legacy selection metadata; not tested as an outcome. Defined by the reconstruction code. |
-
-## Loading and reproduction scope
-
-From a complete package, the notebook finds both benchmark CSVs in `data/`. In Colab, upload both together when prompted. In standalone Jupyter, place them in the current working directory. Files are identified by their columns, allowing timestamped names.
-
-Stage-2 activation summaries use `intervened` and `stage2_decision` in TURNS. The SCENARIOS input verifies reconstruction; no third input is needed. Stage-1 severity is not present in these exports and is not analyzed or imputed.
-
-The blinded clinical matrix is supplied for separate inspection, not loaded by the benchmark notebook. It contains no condition mapping. Keep researcher-only mappings and private clinical materials outside this release.
-
-The supplied study data are preserved. Benchmark results are displayed inside the notebook. Optional live runners save new conversations under `outputs/raw_runs/`; those records are separate from the two analysis inputs.
+| `anchor_selection_risk` | Recorded index: `1 + 0.5 × DCS_mean + 0.5 × HES_mean − SIS_sum / n_sis_turns`. Not used as a benchmark outcome. |

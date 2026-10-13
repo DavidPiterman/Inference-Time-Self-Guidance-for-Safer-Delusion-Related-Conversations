@@ -27,7 +27,7 @@ The notebook automatically finds `data/psychosis_bench_turns.csv` and `data/psyc
 
 1. Open the same notebook in Colab, for example using **File → Upload notebook**.
 2. Choose **Runtime → Run all**.
-3. At the upload prompt, select **both** the TURNS CSV and the SCENARIOS CSV together. Upload exactly two files in that prompt.
+3. At the upload prompt, select **both** `psychosis_bench_turns.csv` and `psychosis_bench_scenarios.csv` together.
 
 Files are identified by their columns, so timestamped filenames are supported. Clinical ratings are not requested. The Colab path needs no repository folders once the two CSVs have been uploaded. The notebook displays the package versions it uses.
 
@@ -35,7 +35,7 @@ Files are identified by their columns, so timestamped filenames are supported. C
 
 Run all cells to display the benchmark analyses, tables and two figures inside the notebook. Results remain available as dataframes; the notebook does not create separate result files. See the [analysis guide](analysis/README.md) for execution instructions.
 
-The separate [blinded clinical-evaluation matrix](data/clinical_evaluation/README.md) is included for independent inspection. This benchmark notebook does not load it or reproduce clinical agreement or condition summaries in main Table 3 and Supplementary Tables E3–E4. Condition summaries require a researcher-retained mapping that is not in this package.
+The notebook analyzes the benchmark conversations. A separate [clinical-ratings dataset](data/clinical_evaluation/README.md) contains ratings from two raters for 12 selected conversations; these ratings are not analyzed by the notebook.
 
 ## Package contents
 
@@ -47,7 +47,7 @@ The separate [blinded clinical-evaluation matrix](data/clinical_evaluation/READM
 | `requirements.txt` | Numerical environment and optional live-client dependencies. |
 | `.env.example`, `.gitignore` | Empty live-run credential template and exclusions for local files. |
 
-The live runners are not part of the reproduction workflow. New model responses require provider credentials and a separately supplied scenario JSON file configured through `TEST_CASES_PATH`; `data/test_cases.json` is not included. New responses may differ from the recorded study data.
+The [runners](runners/README.md) generate new model responses using provider credentials and a scenario JSON file specified by `TEST_CASES_PATH`. The scenario JSON is not included.
 
 ## Study data and interpretation
 

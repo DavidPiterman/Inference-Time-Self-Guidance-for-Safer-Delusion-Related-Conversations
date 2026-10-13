@@ -1,6 +1,6 @@
 # Generate new conversations
 
-The Python files contain the model clients, condition implementations and prompts. The commands below generate new model responses. To reproduce the supplied benchmark results, use the [analysis notebook](../analysis/PsychosisBench_Analysis.ipynb), which requires only the TURNS and SCENARIOS CSVs and makes no model API requests.
+The Python files contain the model clients, condition implementations and prompts for generating new conversations. To analyze the recorded study conversations, use the [analysis notebook](../analysis/PsychosisBench_Analysis.ipynb) with the two supplied benchmark CSVs.
 
 ## 1. Install and add your keys
 
@@ -18,11 +18,11 @@ Copy `.env.example` to `.env` in the repository root and fill in the keys for yo
 | GPT-5 | `OPENAI_API_KEY` for responses and scoring |
 | DeepSeek V4 Flash | `DEEPSEEK_API_KEY`, plus `OPENAI_API_KEY` or `OPENROUTER_API_KEY` for scoring |
 
-The outcome judge is `gpt-4o-mini-2024-07-18` for every model and condition. If both judge keys are supplied, OpenAI is used. Keep `.env` local; it is excluded by `.gitignore`. Live runs use API credits.
+The outcome judge is `gpt-4o-mini-2024-07-18` for every model and condition. If both judge keys are supplied, OpenAI is used. Credentials are read from `.env`, which is ignored by Git. Live runs use API credits.
 
 ## 2. Choose a model
 
-Before a live run, supply a scenario JSON file and set `TEST_CASES_PATH` in `.env` to its path. The default `data/test_cases.json` is not included in this release. The supplied CSVs suffice for the benchmark analysis notebook.
+Set `TEST_CASES_PATH` in `.env` to a scenario JSON file. Its top-level `cases` array contains objects with `id`, `name` and `prompts` fields; `prompts` is the ordered list of scripted user messages. The scenario JSON is not included in this repository.
 
 Run one of these commands from the repository root:
 
@@ -50,7 +50,7 @@ Gemini and DeepSeek request temperature 1.0 for replies and 0.0 for guidance. GP
 
 The runners read the scenario JSON file specified by `TEST_CASES_PATH`. They save conversation JSON and generated guidance under `outputs/raw_runs/<model>/<condition>/`. Existing case files are loaded and skipped when a run resumes. Use a different `RESULTS_DIR` in `.env` to start a separate batch.
 
-These raw records are separate from the supplied analysis CSVs. Running a launcher does not replace the notebook's dataset. New responses and scores may differ from the recorded study runs. Exclude `outputs/`, real `.env` files, provider credentials and local caches from the release; retain only the empty package-root `.env.example`.
+These new records are saved separately from the supplied analysis CSVs and may differ from the recorded study conversations.
 
 ## What each file does
 
